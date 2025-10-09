@@ -188,14 +188,14 @@ button[onclick="clearForm()"]:hover {
     width: 9.4cm;
     height: 9.5cm;
     border: 2px solid #333;
-    padding: 0.3cm;
+    padding: 0.25cm;
     background: white;
     display: flex;
     flex-direction: column;
     position: relative;
-    font-family: Arial, sans-serif;
-    border-radius: 5px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Label Top Section */
@@ -404,6 +404,161 @@ button[onclick="clearForm()"]:hover {
         transform-origin: top left;
         margin-bottom: -50%;
     }
+}
+
+/* New Label Styles */
+.label-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5cm;
+    padding-bottom: 0.2cm;
+}
+
+.header-left {
+    flex-shrink: 0;
+}
+
+.logo-compact {
+    height: 1.8cm;
+    width: auto;
+}
+
+.header-right {
+    flex: 1;
+    text-align: left;
+}
+
+.header-right .product-label {
+    font-size: 0.55rem;
+    color: #666;
+    font-weight: 600;
+    letter-spacing: 1px;
+    display: block;
+}
+
+.header-right .product-name {
+    font-size: 1rem;
+    color: #dc2626;
+    font-weight: bold;
+    margin: 0;
+    text-transform: uppercase;
+    line-height: 1.2;
+}
+
+.label-divider {
+    height: 2px;
+    background: linear-gradient(to right, #dc2626, #333);
+    margin: 0.15cm 0;
+}
+
+.label-body {
+    display: flex;
+    gap: 0.3cm;
+    margin: 0.2cm 0;
+    flex: 1;
+}
+
+.body-left,
+.body-right {
+    flex: 1;
+}
+
+.info-group {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.2cm;
+    margin-bottom: 0.15cm;
+}
+
+.info-icon {
+    font-size: 0.8rem;
+    width: 0.6cm;
+    flex-shrink: 0;
+}
+
+.info-group > div {
+    flex: 1;
+}
+
+.info-label {
+    display: block;
+    font-size: 0.5rem;
+    color: #666;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.info-value {
+    display: block;
+    font-size: 0.7rem;
+    color: #000;
+    font-weight: bold;
+    margin-top: 1px;
+}
+
+.expiration-section {
+    display: flex;
+    gap: 0.2cm;
+    margin: 0.2cm 0;
+}
+
+.exp-box {
+    flex: 1;
+    padding: 0.15cm;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 0.15cm;
+}
+
+.exp-box.refrigeracion {
+    background: #e0f2fe;
+    border: 1px solid #0284c7;
+}
+
+.exp-box.congelacion {
+    background: #f0f9ff;
+    border: 1px solid #0369a1;
+}
+
+.exp-icon {
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.exp-box > div {
+    flex: 1;
+}
+
+.exp-label {
+    display: block;
+    font-size: 0.45rem;
+    color: #333;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.exp-date {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: #000;
+    margin-top: 1px;
+}
+
+.barcode-section-new {
+    margin-top: auto;
+    text-align: center;
+    padding-top: 0.15cm;
+}
+
+.barcode-section-new .barcode {
+    width: 100%;
+    height: 35px;
+    max-width: 7cm;
+    margin: 0 auto;
 }
 
 /* Add Barcode Font */

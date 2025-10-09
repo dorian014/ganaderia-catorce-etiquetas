@@ -59,6 +59,16 @@
                         <label for="barcode">CÓDIGO DE BARRAS:</label>
                         <input type="text" id="barcode" placeholder="Número de código" value="123456789">
                     </div>
+
+                    <div class="form-group">
+                        <label for="lote">LOTE:</label>
+                        <input type="text" id="lote" placeholder="ej. L2024-001" value="L2024-001">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="temperatura">TEMPERATURA:</label>
+                        <input type="text" id="temperatura" placeholder="ej. 0-4°C" value="0-4°C">
+                    </div>
                 </div>
 
                 <div class="button-group">
@@ -79,39 +89,84 @@
             <div class="a4-page">
                 <!-- Label 1 -->
                 <div class="label">
-                    <div class="label-top">
-                        <span class="product-label">PRODUCTO:</span>
-                        <h3 class="product-name">Pulpa/trozo de cerdo</h3>
+                    <!-- Header with logo and product -->
+                    <div class="label-header">
+                        <div class="header-left">
+                            <img src="assets/logo.png" alt="CATORCE" class="logo-compact">
+                        </div>
+                        <div class="header-right">
+                            <span class="product-label">PRODUCTO</span>
+                            <h3 class="product-name">Pulpa/trozo de cerdo</h3>
+                        </div>
                     </div>
 
-                    <div class="logo-section">
-                        <img src="assets/logo.png" alt="CATORCE" class="logo">
+                    <!-- Divider -->
+                    <div class="label-divider"></div>
+
+                    <!-- Main info in two columns -->
+                    <div class="label-body">
+                        <div class="body-left">
+                            <div class="info-group">
+                                <span class="info-icon">⚖️</span>
+                                <div>
+                                    <span class="info-label">PESO</span>
+                                    <span class="info-value weight">10 kg</span>
+                                </div>
+                            </div>
+                            <div class="info-group">
+                                <span class="info-icon">📅</span>
+                                <div>
+                                    <span class="info-label">EMPACADO</span>
+                                    <span class="info-value pack-date">09/10/2025</span>
+                                </div>
+                            </div>
+                            <div class="info-group">
+                                <span class="info-icon">🏢</span>
+                                <div>
+                                    <span class="info-label">COMEDOR</span>
+                                    <span class="info-value comedor-name">GRAMMER</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="body-right">
+                            <div class="info-group">
+                                <span class="info-icon">📦</span>
+                                <div>
+                                    <span class="info-label">LOTE</span>
+                                    <span class="info-value lote-num">L2024-001</span>
+                                </div>
+                            </div>
+                            <div class="info-group">
+                                <span class="info-icon">🌡️</span>
+                                <div>
+                                    <span class="info-label">TEMP.</span>
+                                    <span class="info-value temperatura">0-4°C</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="barcode-section">
+                    <!-- Expiration dates highlighted -->
+                    <div class="expiration-section">
+                        <div class="exp-box refrigeracion">
+                            <span class="exp-icon">❄️</span>
+                            <div>
+                                <span class="exp-label">REFRIGERACIÓN</span>
+                                <span class="exp-date ref-date">23/10/2025</span>
+                            </div>
+                        </div>
+                        <div class="exp-box congelacion">
+                            <span class="exp-icon">🧊</span>
+                            <div>
+                                <span class="exp-label">CONGELACIÓN</span>
+                                <span class="exp-date cong-date">09/12/2025</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Barcode at bottom -->
+                    <div class="barcode-section-new">
                         <svg class="barcode" id="barcode1"></svg>
-                    </div>
-
-                    <div class="date-section">
-                        <span class="empacado-label">EMPACADO:</span>
-                        <span class="pack-date">09/10/2025</span>
-                    </div>
-
-                    <div class="label-content">
-                        <div class="info-row">
-                            <span class="label-field">PESO:</span>
-                            <span class="label-value weight">10 kg</span>
-                        </div>
-                        <div class="info-row">
-                            <span class="label-field">COMEDOR:</span>
-                            <span class="label-value comedor-name">GRAMMER</span>
-                        </div>
-                        <div class="refrigeration-info">
-                            <div class="caducidad-ref">Caducidad refrigeración:</div>
-                            <div class="ref-date">23/10/2025</div>
-                            <div class="caducidad-cong">Caducidad congelación:</div>
-                            <div class="cong-date">09/12/2025</div>
-                        </div>
                     </div>
                 </div>
 
