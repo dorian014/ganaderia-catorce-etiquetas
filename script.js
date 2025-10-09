@@ -16,11 +16,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const today = new Date().toISOString().split('T')[0];
     document.getElementById('packDate').value = today;
 
-    // Set default expiration date (14 days from today for refrigeration)
-    const expDate = new Date();
-    expDate.setDate(expDate.getDate() + 14);
-    document.getElementById('expDate').value = expDate.toISOString().split('T')[0];
-
     // Set default refrigeration date (14 days)
     const refDate = new Date();
     refDate.setDate(refDate.getDate() + 14);
@@ -122,10 +117,6 @@ function clearForm() {
     // Reset dates to defaults
     const today = new Date().toISOString().split('T')[0];
     document.getElementById('packDate').value = today;
-
-    const expDate = new Date();
-    expDate.setDate(expDate.getDate() + 14);
-    document.getElementById('expDate').value = expDate.toISOString().split('T')[0];
 
     // Reset refrigeration date (14 days)
     const refDate = new Date();
