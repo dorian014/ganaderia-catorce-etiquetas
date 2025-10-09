@@ -46,7 +46,7 @@ function updateAllLabels() {
     const comedor = document.getElementById('comedor').value || 'GRAMMER';
     const refrigeracion = document.getElementById('refrigeracion').value || '';
     const congelacion = document.getElementById('congelacion').value || '';
-    const barcode = document.getElementById('barcode').value || '123456789';
+    const barcodeValue = document.getElementById('barcode').value || '123456789';
 
     // Format dates
     const formattedPackDate = formatDate(packDate);
@@ -60,7 +60,7 @@ function updateAllLabels() {
 
     // Update all labels
     const labels = document.querySelectorAll('.label');
-    labels.forEach(label => {
+    labels.forEach((label, index) => {
         // Update product name
         const productNameElement = label.querySelector('.product-name');
         if (productNameElement) {
@@ -85,10 +85,18 @@ function updateAllLabels() {
             comedorElement.textContent = comedor;
         }
 
-        // Update barcode number
-        const barcodeElement = label.querySelector('.barcode-number');
-        if (barcodeElement) {
-            barcodeElement.textContent = barcode;
+        // Generate barcode
+        const barcodeElement = label.querySelector('.barcode');
+        if (barcodeElement && typeof JsBarcode !== 'undefined') {
+            JsBarcode(barcodeElement, barcodeValue, {
+                format: "CODE128",
+                width: 2,
+                height: 40,
+                displayValue: true,
+                fontSize: 12,
+                margin: 5,
+                textMargin: 0
+            });
         }
 
         // Update refrigeration date

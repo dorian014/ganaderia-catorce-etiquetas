@@ -26,6 +26,12 @@ header {
     text-align: center;
 }
 
+.header-logo {
+    width: 200px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
 header h1 {
     color: #333;
     font-size: 2rem;
@@ -181,13 +187,15 @@ button[onclick="clearForm()"]:hover {
 .label {
     width: 9.4cm;
     height: 9.5cm;
-    border: 1px solid #000;
-    padding: 0.2cm;
+    border: 2px solid #333;
+    padding: 0.3cm;
     background: white;
     display: flex;
     flex-direction: column;
     position: relative;
     font-family: Arial, sans-serif;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 /* Label Top Section */
@@ -197,17 +205,20 @@ button[onclick="clearForm()"]:hover {
 }
 
 .product-label {
-    font-size: 0.6rem;
-    font-weight: normal;
-    color: #000;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .product-name {
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     font-weight: bold;
-    color: #000;
-    margin-top: 0.05cm;
-    text-transform: none;
+    color: #dc2626;
+    margin-top: 0.1cm;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
 }
 
 /* Logo Section */
@@ -241,23 +252,10 @@ button[onclick="clearForm()"]:hover {
 }
 
 .barcode {
-    font-family: 'Libre Barcode 39', monospace;
-    font-size: 1.5rem;
-    height: 0.8cm;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    letter-spacing: 0.1cm;
-    background: linear-gradient(90deg,
-        #000 2px, #fff 2px, #fff 4px, #000 4px, #000 6px, #fff 6px, #fff 8px, #000 8px);
-    background-size: 8px 100%;
-    padding: 0.1cm;
-}
-
-.barcode-number {
-    font-size: 0.6rem;
-    margin-top: 0.05cm;
-    font-family: Arial, sans-serif;
+    width: 100%;
+    height: 40px;
+    max-width: 6cm;
+    margin: 0 auto;
 }
 
 /* Date Section */
@@ -370,8 +368,10 @@ button[onclick="clearForm()"]:hover {
     .label {
         width: 9.4cm;
         height: 9.5cm;
-        border: 1px solid #000;
+        border: 2px solid #333;
         page-break-inside: avoid;
+        border-radius: 5px;
+        box-shadow: none;
     }
 
     @page {
