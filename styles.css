@@ -6,7 +6,7 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     min-height: 100vh;
     padding: 20px;
@@ -160,61 +160,124 @@ button[onclick="clearForm()"]:hover {
     overflow-x: auto;
 }
 
-/* A4 Page Layout */
+/* A4 Page Layout - Landscape */
 .a4-page {
-    width: 21cm;
-    min-height: 29.7cm;
+    width: 29.7cm;
+    min-height: 21cm;
     margin: 0 auto;
     background: white;
-    padding: 0.5cm;
+    padding: 1cm 0.75cm;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
-    /* Grid for labels: 2 columns × 3 rows */
+    /* Grid for labels: 3 columns × 2 rows */
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    gap: 0.5cm;
+    grid-template-columns: repeat(3, 9.4cm);
+    grid-template-rows: repeat(2, 9.5cm);
+    gap: 0.5cm 0.4cm;
+    justify-content: center;
 }
 
 /* Individual Label Styles */
 .label {
-    width: 9.5cm;
+    width: 9.4cm;
     height: 9.5cm;
-    border: 2px solid #333;
-    border-radius: 8px;
-    padding: 0.4cm;
+    border: 1px solid #000;
+    padding: 0.2cm;
     background: white;
     display: flex;
     flex-direction: column;
     position: relative;
-    overflow: hidden;
+    font-family: Arial, sans-serif;
 }
 
-/* Label Header */
-.label-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 0.3cm;
-    padding-bottom: 0.2cm;
-    border-bottom: 2px solid #333;
+/* Label Top Section */
+.label-top {
+    text-align: center;
+    margin-bottom: 0.2cm;
+}
+
+.product-label {
+    font-size: 0.6rem;
+    font-weight: normal;
+    color: #000;
 }
 
 .product-name {
-    font-size: 1.1rem;
+    font-size: 0.9rem;
     font-weight: bold;
-    color: #222;
-    max-width: 60%;
-    line-height: 1.2;
+    color: #000;
+    margin-top: 0.05cm;
+    text-transform: none;
 }
 
-.price-tag {
-    background: #e53e3e;
-    color: white;
-    padding: 0.2cm 0.4cm;
-    border-radius: 5px;
-    font-size: 1.2rem;
+/* Logo Section */
+.logo-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0.2cm 0;
+}
+
+.logo {
+    width: 2.5cm;
+    height: auto;
+    opacity: 0.9;
+}
+
+.est-date {
+    font-size: 0.6rem;
+    color: #000;
+    margin-top: 0.1cm;
+    font-weight: normal;
+}
+
+/* Barcode Section */
+.barcode-section {
+    text-align: center;
+    margin: 0.2cm 0;
+    padding: 0.1cm;
+    background: white;
+}
+
+.barcode {
+    font-family: 'Libre Barcode 39', monospace;
+    font-size: 1.5rem;
+    height: 0.8cm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 0.1cm;
+    background: linear-gradient(90deg,
+        #000 2px, #fff 2px, #fff 4px, #000 4px, #000 6px, #fff 6px, #fff 8px, #000 8px);
+    background-size: 8px 100%;
+    padding: 0.1cm;
+}
+
+.barcode-number {
+    font-size: 0.6rem;
+    margin-top: 0.05cm;
+    font-family: Arial, sans-serif;
+}
+
+/* Date Section */
+.date-section {
+    text-align: center;
+    margin: 0.2cm 0;
+    padding: 0.1cm 0;
+}
+
+.empacado-label {
+    font-size: 0.6rem;
+    font-weight: normal;
+    color: #000;
+}
+
+.pack-date {
+    font-size: 0.8rem;
     font-weight: bold;
+    color: #000;
+    margin-left: 0.2cm;
 }
 
 /* Label Content */
@@ -222,55 +285,48 @@ button[onclick="clearForm()"]:hover {
     flex: 1;
     display: flex;
     flex-direction: column;
-    font-size: 0.85rem;
+    justify-content: space-between;
+    font-size: 0.65rem;
 }
 
 .info-row {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 0.15cm;
-    padding: 0.1cm 0;
+    margin: 0.1cm 0;
+    padding: 0.05cm 0;
 }
 
 .label-field {
-    font-weight: 600;
-    color: #555;
+    font-weight: normal;
+    color: #000;
+    font-size: 0.6rem;
 }
 
 .label-value {
-    color: #222;
-    font-weight: 500;
+    font-weight: bold;
+    color: #000;
+    font-size: 0.7rem;
 }
 
-/* Storage Section */
-.storage-section {
-    margin-top: 0.3cm;
-    padding: 0.2cm;
-    background: #e6fffa;
-    border: 1px solid #4299e1;
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.2cm;
-}
-
-.storage-icon {
-    font-size: 1.2rem;
-}
-
-.storage-text {
-    color: #2b6cb0;
-    font-weight: 600;
-    font-size: 0.8rem;
-}
-
-/* Additional Info */
-.additional-info {
-    margin-top: 0.2cm;
-    font-size: 0.75rem;
-    color: #666;
+/* Refrigeration Info */
+.refrigeration-info {
+    margin-top: auto;
+    padding: 0.15cm;
+    font-size: 0.55rem;
     line-height: 1.3;
+}
+
+.caducidad-ref,
+.caducidad-cong {
+    font-weight: normal;
+    color: #000;
+}
+
+.ref-date,
+.cong-date {
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 0.05cm;
 }
 
 /* Print Styles */
@@ -300,34 +356,30 @@ button[onclick="clearForm()"]:hover {
         background: white;
     }
 
-    /* A4 Page for printing */
+    /* A4 Page for printing - Landscape */
     .a4-page {
-        width: 21cm;
-        height: 29.7cm;
+        width: 29.7cm;
+        height: 21cm;
         margin: 0;
-        padding: 0.5cm;
+        padding: 1cm 0.75cm;
         box-shadow: none;
         page-break-after: always;
     }
 
     /* Label adjustments for print */
     .label {
-        width: 9.5cm;
+        width: 9.4cm;
         height: 9.5cm;
         border: 1px solid #000;
         page-break-inside: avoid;
     }
 
-    .label-header {
-        border-bottom: 1px solid #000;
+    @page {
+        size: A4 landscape;
+        margin: 0;
     }
 
-    .price-tag {
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-    }
-
-    .storage-section {
+    .logo {
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
     }
@@ -353,3 +405,6 @@ button[onclick="clearForm()"]:hover {
         margin-bottom: -50%;
     }
 }
+
+/* Add Barcode Font */
+@import url('https://fonts.googleapis.com/css2?family=Libre+Barcode+39&display=swap');

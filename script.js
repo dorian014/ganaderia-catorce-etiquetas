@@ -1,75 +1,3 @@
-// Set today's date as default for packed date
-document.addEventListener('DOMContentLoaded', function() {
-    const today = new Date().toISOString().split('T')[0];
-    document.getElementById('packDate').value = today;
-
-    // Set default use by date (7 days from today)
-    const useByDate = new Date();
-    useByDate.setDate(useByDate.getDate() + 7);
-    document.getElementById('useBy').value = useByDate.toISOString().split('T')[0];
-
-    // Update labels with default values
-    updateAllLabels();
-});
-
-// Function to update all labels with the form data
-function updateAllLabels() {
-    // Get form values
-    const productName = document.getElementById('productName').value || 'Product Name';
-    const weight = document.getElementById('weight').value || '';
-    const packDate = document.getElementById('packDate').value;
-    const useBy = document.getElementById('useBy').value;
-    const price = document.getElementById('price').value || '';
-    const batchCode = document.getElementById('batchCode').value || '';
-    const storageInstructions = document.getElementById('storageInstructions').value || 'Keep refrigerated';
-    const origin = document.getElementById('origin').value || '';
-    const additionalInfo = document.getElementById('additionalInfo').value || '';
-
-    // Format dates
-    const formattedPackDate = formatDate(packDate);
-    const formattedUseBy = formatDate(useBy);
-
-    // Update all labels
-    const labels = document.querySelectorAll('.label');
-    labels.forEach(label => {
-        // Update product name
-        label.querySelector('.product-name').textContent = productName;
-
-        // Update price
-        if (price) {
-            label.querySelector('.price-tag').textContent = price;
-            label.querySelector('.price-tag').style.display = 'block';
-        } else {
-            label.querySelector('.price-tag').style.display = 'none';
-        }
-
-        // Update weight
-        label.querySelector('.weight').textContent = weight;
-
-        // Update dates
-        label.querySelector('.pack-date').textContent = formattedPackDate;
-        label.querySelector('.use-by').textContent = formattedUseBy;
-
-        // Update batch code
-        label.querySelector('.batch').textContent = batchCode;
-
-        // Update origin
-        label.querySelector('.origin-text').textContent = origin;
-
-        // Update storage instructions
-        label.querySelector('.storage-text').textContent = storageInstructions;
-
-        // Update additional info
-        const additionalInfoElement = label.querySelector('.additional-info');
-        additionalInfoElement.textContent = additionalInfo;
-        if (additionalInfo) {
-            additionalInfoElement.style.display = 'block';
-        } else {
-            additionalInfoElement.style.display = 'none';
-        }
-    });
-}
-
 // Function to format date
 function formatDate(dateString) {
     if (!dateString) return '';
@@ -83,6 +11,100 @@ function formatDate(dateString) {
     return `${day}/${month}/${year}`;
 }
 
+// Set today's date as default for packed date
+document.addEventListener('DOMContentLoaded', function() {
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('packDate').value = today;
+
+    // Set default expiration date (14 days from today for refrigeration)
+    const expDate = new Date();
+    expDate.setDate(expDate.getDate() + 14);
+    document.getElementById('expDate').value = expDate.toISOString().split('T')[0];
+
+    // Set default refrigeration date (14 days)
+    const refDate = new Date();
+    refDate.setDate(refDate.getDate() + 14);
+    const refDateStr = formatDate(refDate.toISOString().split('T')[0]);
+    document.getElementById('refrigeracion').value = `Caducidad refrigeración: ${refDateStr}`;
+
+    // Set default freezing date (60 days)
+    const congDate = new Date();
+    congDate.setDate(congDate.getDate() + 60);
+    const congDateStr = formatDate(congDate.toISOString().split('T')[0]);
+    document.getElementById('congelacion').value = `Caducidad congelación: ${congDateStr}`;
+
+    // Update labels with default values
+    updateAllLabels();
+});
+
+// Function to update all labels with the form data
+function updateAllLabels() {
+    // Get form values
+    const productName = document.getElementById('productName').value || 'Producto';
+    const weight = document.getElementById('weight').value || '10 kg';
+    const packDate = document.getElementById('packDate').value;
+    const comedor = document.getElementById('comedor').value || 'GRAMMER';
+    const refrigeracion = document.getElementById('refrigeracion').value || '';
+    const congelacion = document.getElementById('congelacion').value || '';
+    const barcode = document.getElementById('barcode').value || '123456789';
+
+    // Format dates
+    const formattedPackDate = formatDate(packDate);
+
+    // Extract dates from refrigeracion and congelacion fields
+    const refDateMatch = refrigeracion.match(/(\d{2}\/\d{2}\/\d{4})/);
+    const refDate = refDateMatch ? refDateMatch[1] : formatDate(new Date().toISOString().split('T')[0]);
+
+    const congDateMatch = congelacion.match(/(\d{2}\/\d{2}\/\d{4})/);
+    const congDate = congDateMatch ? congDateMatch[1] : formatDate(new Date().toISOString().split('T')[0]);
+
+    // Update all labels
+    const labels = document.querySelectorAll('.label');
+    labels.forEach(label => {
+        // Update product name
+        const productNameElement = label.querySelector('.product-name');
+        if (productNameElement) {
+            productNameElement.textContent = productName;
+        }
+
+        // Update weight
+        const weightElement = label.querySelector('.weight');
+        if (weightElement) {
+            weightElement.textContent = weight;
+        }
+
+        // Update pack date
+        const packDateElement = label.querySelector('.pack-date');
+        if (packDateElement) {
+            packDateElement.textContent = formattedPackDate;
+        }
+
+        // Update comedor
+        const comedorElement = label.querySelector('.comedor-name');
+        if (comedorElement) {
+            comedorElement.textContent = comedor;
+        }
+
+        // Update barcode number
+        const barcodeElement = label.querySelector('.barcode-number');
+        if (barcodeElement) {
+            barcodeElement.textContent = barcode;
+        }
+
+        // Update refrigeration date
+        const refDateElement = label.querySelector('.ref-date');
+        if (refDateElement) {
+            refDateElement.textContent = refDate;
+        }
+
+        // Update freezing date
+        const congDateElement = label.querySelector('.cong-date');
+        if (congDateElement) {
+            congDateElement.textContent = congDate;
+        }
+    });
+}
+
 // Function to clear the form
 function clearForm() {
     document.getElementById('labelForm').reset();
@@ -91,12 +113,21 @@ function clearForm() {
     const today = new Date().toISOString().split('T')[0];
     document.getElementById('packDate').value = today;
 
-    const useByDate = new Date();
-    useByDate.setDate(useByDate.getDate() + 7);
-    document.getElementById('useBy').value = useByDate.toISOString().split('T')[0];
+    const expDate = new Date();
+    expDate.setDate(expDate.getDate() + 14);
+    document.getElementById('expDate').value = expDate.toISOString().split('T')[0];
 
-    // Reset storage instructions to default
-    document.getElementById('storageInstructions').value = 'Keep refrigerated at 0-4°C';
+    // Reset refrigeration date (14 days)
+    const refDate = new Date();
+    refDate.setDate(refDate.getDate() + 14);
+    const refDateStr = formatDate(refDate.toISOString().split('T')[0]);
+    document.getElementById('refrigeracion').value = `Caducidad refrigeración: ${refDateStr}`;
+
+    // Reset freezing date (60 days)
+    const congDate = new Date();
+    congDate.setDate(congDate.getDate() + 60);
+    const congDateStr = formatDate(congDate.toISOString().split('T')[0]);
+    document.getElementById('congelacion').value = `Caducidad congelación: ${congDateStr}`;
 
     // Update labels with cleared values
     updateAllLabels();
