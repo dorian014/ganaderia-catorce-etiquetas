@@ -1,25 +1,26 @@
-# 🥩 Meat Product Label Generator
+# 🥩 Generador de Etiquetas CATORCE
 
-A professional web application for generating printable meat product labels. Designed to print 6 labels per A4 page with all essential product information.
+Aplicación web profesional para generar etiquetas de productos cárnicos imprimibles. Diseñado para imprimir 6 etiquetas por página A4 horizontal con toda la información esencial del producto.
 
-## 🎯 Features
+## 🎯 Características
 
-- **Print-Ready Labels**: Automatically formats 6 labels per A4 page (2 columns × 3 rows)
-- **Real-Time Updates**: Labels update instantly as you type
-- **Professional Layout**: Each label is 9.5cm × 9.5cm for optimal A4 printing
-- **Comprehensive Information**: Includes all essential meat product details
-- **Easy to Use**: Simple form interface with automatic date calculations
+- **Etiquetas Listas para Imprimir**: Formato automático de 6 etiquetas por página A4 horizontal (3 columnas × 2 filas)
+- **Actualizaciones en Tiempo Real**: Las etiquetas se actualizan instantáneamente mientras escribes
+- **Diseño Profesional**: Cada etiqueta mide 9.4cm × 9.5cm para impresión óptima en A4 horizontal
+- **Información Completa**: Incluye todos los detalles esenciales del producto cárnico
+- **Fácil de Usar**: Interfaz de formulario simple con cálculos automáticos de fechas
+- **Marca CATORCE**: Incluye el logo y branding de CATORCE
 
-## 📋 Label Information
+## 📋 Información de la Etiqueta
 
-Each label includes:
-- Product name and price
-- Weight/quantity
-- Packed date and use-by date
-- Batch/lot code
-- Origin/farm information
-- Storage instructions with temperature
-- Additional information (ingredients, allergens, etc.)
+Cada etiqueta incluye:
+- Nombre del producto
+- Peso
+- Fecha de empacado
+- Código de barras
+- Comedor de destino
+- Fechas de caducidad para refrigeración y congelación
+- Logo CATORCE
 
 ## 🚀 Quick Start
 
