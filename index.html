@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generador de Etiquetas - CATORCE</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- JsBarcode Library -->
-    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+    <!-- QRCode Library -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -53,11 +53,6 @@
                     <div class="form-group">
                         <label for="congelacion">CONGELACIÓN:</label>
                         <input type="text" id="congelacion" value="Caducidad congelación: 09/12/2025">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="barcode">CÓDIGO DE BARRAS:</label>
-                        <input type="text" id="barcode" placeholder="Número de código" value="123456789">
                     </div>
                 </div>
 
@@ -136,9 +131,9 @@
                         </div>
                     </div>
 
-                    <!-- Barcode at bottom -->
-                    <div class="barcode-section-new">
-                        <svg class="barcode" id="barcode1"></svg>
+                    <!-- QR Code at bottom -->
+                    <div class="qrcode-section">
+                        <div class="qrcode" id="qrcode1"></div>
                     </div>
                 </div>
 
@@ -153,8 +148,8 @@
                         <img src="assets/logo.png" alt="CATORCE" class="logo">
                     </div>
 
-                    <div class="barcode-section">
-                        <svg class="barcode"></svg>
+                    <div class="qrcode-section">
+                        <div class="qrcode"></div>
                     </div>
 
                     <div class="date-section">
@@ -191,8 +186,8 @@
                         <img src="assets/logo.png" alt="CATORCE" class="logo">
                     </div>
 
-                    <div class="barcode-section">
-                        <svg class="barcode"></svg>
+                    <div class="qrcode-section">
+                        <div class="qrcode"></div>
                     </div>
 
                     <div class="date-section">
@@ -229,8 +224,8 @@
                         <img src="assets/logo.png" alt="CATORCE" class="logo">
                     </div>
 
-                    <div class="barcode-section">
-                        <svg class="barcode"></svg>
+                    <div class="qrcode-section">
+                        <div class="qrcode"></div>
                     </div>
 
                     <div class="date-section">
@@ -267,8 +262,8 @@
                         <img src="assets/logo.png" alt="CATORCE" class="logo">
                     </div>
 
-                    <div class="barcode-section">
-                        <svg class="barcode"></svg>
+                    <div class="qrcode-section">
+                        <div class="qrcode"></div>
                     </div>
 
                     <div class="date-section">
@@ -305,8 +300,8 @@
                         <img src="assets/logo.png" alt="CATORCE" class="logo">
                     </div>
 
-                    <div class="barcode-section">
-                        <svg class="barcode"></svg>
+                    <div class="qrcode-section">
+                        <div class="qrcode"></div>
                     </div>
 
                     <div class="date-section">

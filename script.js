@@ -46,7 +46,6 @@ function updateAllLabels() {
     const comedor = document.getElementById('comedor').value || 'GRAMMER';
     const refrigeracion = document.getElementById('refrigeracion').value || '';
     const congelacion = document.getElementById('congelacion').value || '';
-    const barcodeValue = document.getElementById('barcode').value || '123456789';
 
     // Format dates
     const formattedPackDate = formatDate(packDate);
@@ -85,17 +84,20 @@ function updateAllLabels() {
             comedorElement.textContent = comedor;
         }
 
-        // Generate barcode
-        const barcodeElement = label.querySelector('.barcode');
-        if (barcodeElement && typeof JsBarcode !== 'undefined') {
-            JsBarcode(barcodeElement, barcodeValue, {
-                format: "CODE128",
-                width: 1.5,
-                height: 35,
-                displayValue: true,
-                fontSize: 10,
-                margin: 2,
-                textMargin: 0
+        // Generate QR code
+        const qrcodeElement = label.querySelector('.qrcode');
+        if (qrcodeElement && typeof QRCode !== 'undefined') {
+            // Clear existing QR code if any
+            qrcodeElement.innerHTML = '';
+
+            // Create new QR code
+            new QRCode(qrcodeElement, {
+                text: "https://www.ganaderiacatorce.com/",
+                width: 128,
+                height: 128,
+                colorDark : "#000000",
+                colorLight : "#ffffff",
+                correctLevel : QRCode.CorrectLevel.L
             });
         }
 

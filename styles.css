@@ -243,20 +243,7 @@ button[onclick="clearForm()"]:hover {
     font-weight: normal;
 }
 
-/* Barcode Section */
-.barcode-section {
-    text-align: center;
-    margin: 0.2cm 0;
-    padding: 0.1cm;
-    background: white;
-}
-
-.barcode {
-    width: 100%;
-    height: 40px;
-    max-width: 6cm;
-    margin: 0 auto;
-}
+/* QR Code styles moved to qrcode-section */
 
 /* Date Section */
 .date-section {
@@ -420,7 +407,7 @@ button[onclick="clearForm()"]:hover {
 }
 
 .logo-header {
-    height: 1.5cm;
+    height: 2cm;
     width: auto;
 }
 
@@ -630,18 +617,24 @@ button[onclick="clearForm()"]:hover {
     margin-top: 1px;
 }
 
-.barcode-section-new {
+.qrcode-section {
     margin-top: auto;
     text-align: center;
     padding-top: 0.15cm;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.barcode-section-new .barcode {
-    width: 100%;
-    height: 35px;
-    max-width: 7cm;
-    margin: 0 auto;
+.qrcode {
+    width: 2.5cm !important;
+    height: 2.5cm !important;
 }
 
-/* Add Barcode Font */
-@import url('https://fonts.googleapis.com/css2?family=Libre+Barcode+39&display=swap');
+.qrcode img {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+}
+
+/* QR Code implementation - no special fonts needed */
