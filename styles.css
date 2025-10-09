@@ -321,10 +321,14 @@ button[onclick="clearForm()"]:hover {
         margin: 0;
         padding: 0;
         background: white;
+        height: 21cm;
+        overflow: hidden;
     }
 
     .container {
         max-width: none;
+        margin: 0;
+        padding: 0;
     }
 
     /* Hide everything except the print area */
@@ -337,9 +341,12 @@ button[onclick="clearForm()"]:hover {
 
     .print-area {
         padding: 0;
+        margin: 0;
         border-radius: 0;
         box-shadow: none;
         background: white;
+        height: 21cm;
+        overflow: hidden;
     }
 
     /* A4 Page for printing - Landscape */
@@ -349,7 +356,8 @@ button[onclick="clearForm()"]:hover {
         margin: 0;
         padding: 1cm 0.75cm;
         box-shadow: none;
-        page-break-after: always;
+        page-break-after: avoid;
+        page-break-inside: avoid;
     }
 
     /* Label adjustments for print */
