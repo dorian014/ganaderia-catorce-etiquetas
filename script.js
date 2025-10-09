@@ -50,21 +50,27 @@ document.addEventListener('DOMContentLoaded', function() {
     updateAllLabels();
 
     // Add event listener to packDate to recalculate expiration dates
-    document.getElementById('packDate').addEventListener('change', function() {
-        calculateExpirationDates(this.value);
-        updateAllLabels();
-    });
+    const packDateInput = document.getElementById('packDate');
+    if (packDateInput) {
+        packDateInput.addEventListener('change', function() {
+            calculateExpirationDates(this.value);
+            updateAllLabels();
+        });
+    }
 });
 
 // Function to update all labels with the form data
-function updateAllLabels() {
-    // Get form values
-    const productName = document.getElementById('productName').value || 'Producto';
-    const weight = document.getElementById('weight').value || '10 kg';
-    const packDate = document.getElementById('packDate').value;
-    const comedor = document.getElementById('comedor').value || 'GRAMMER';
-    const refrigeracion = document.getElementById('refrigeracion').value || '';
-    const congelacion = document.getElementById('congelacion').value || '';
+window.updateAllLabels = function() {
+    try {
+        console.log('Updating labels...');
+
+        // Get form values
+        const productName = document.getElementById('productName').value || 'Producto';
+        const weight = document.getElementById('weight').value || '10 kg';
+        const packDate = document.getElementById('packDate').value;
+        const comedor = document.getElementById('comedor').value || 'GRAMMER';
+        const refrigeracion = document.getElementById('refrigeracion').value || '';
+        const congelacion = document.getElementById('congelacion').value || '';
 
     // Format dates
     const formattedPackDate = formatDate(packDate);
@@ -105,19 +111,28 @@ function updateAllLabels() {
 
         // Generate QR code
         const qrcodeElement = label.querySelector('.qrcode');
-        if (qrcodeElement && typeof QRCode !== 'undefined') {
-            // Clear existing QR code if any
-            qrcodeElement.innerHTML = '';
+        if (qrcodeElement) {
+            // Check if QRCode library is loaded
+            if (typeof QRCode !== 'undefined') {
+                // Clear existing QR code if any
+                qrcodeElement.innerHTML = '';
 
-            // Create new QR code
-            new QRCode(qrcodeElement, {
-                text: "https://www.ganaderiacatorce.com/",
-                width: 128,
-                height: 128,
-                colorDark : "#000000",
-                colorLight : "#ffffff",
-                correctLevel : QRCode.CorrectLevel.L
-            });
+                try {
+                    // Create new QR code
+                    new QRCode(qrcodeElement, {
+                        text: "https://www.ganaderiacatorce.com/",
+                        width: 128,
+                        height: 128,
+                        colorDark : "#000000",
+                        colorLight : "#ffffff",
+                        correctLevel : QRCode.CorrectLevel.L
+                    });
+                } catch (qrError) {
+                    console.error('Error generating QR code:', qrError);
+                }
+            } else {
+                console.warn('QRCode library not loaded');
+            }
         }
 
         // Update refrigeration date
@@ -132,10 +147,14 @@ function updateAllLabels() {
             congDateElement.textContent = congDate;
         }
     });
+        console.log('Labels updated successfully');
+    } catch (error) {
+        console.error('Error updating labels:', error);
+    }
 }
 
 // Function to clear the form
-function clearForm() {
+window.clearForm = function() {
     document.getElementById('labelForm').reset();
 
     // Reset dates to defaults
@@ -149,12 +168,15 @@ function clearForm() {
     updateAllLabels();
 }
 
-// Add real-time update listeners to all form fields
-document.addEventListener('DOMContentLoaded', function() {
-    const formElements = document.querySelectorAll('#labelForm input, #labelForm textarea');
+// Add real-time update listeners to non-readonly form fields
+window.addEventListener('DOMContentLoaded', function() {
+    const formElements = document.querySelectorAll('#labelForm input:not([readonly]), #labelForm textarea');
     formElements.forEach(element => {
-        element.addEventListener('input', updateAllLabels);
-        element.addEventListener('change', updateAllLabels);
+        // Skip the refrigeration and freezing fields
+        if (element.id !== 'refrigeracion' && element.id !== 'congelacion') {
+            element.addEventListener('input', updateAllLabels);
+            element.addEventListener('change', updateAllLabels);
+        }
     });
 });
 
