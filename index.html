@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meat Product Label Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🥩 Meat Product Label Generator</h1>
+            <p>Create professional labels for meat products - 6 per A4 page</p>
+        </header>
+
+        <div class="control-panel">
+            <h2>Label Information</h2>
+            <form id="labelForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="productName">Product Name:</label>
+                        <input type="text" id="productName" placeholder="e.g., Premium Beef Ribeye" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="weight">Weight:</label>
+                        <input type="text" id="weight" placeholder="e.g., 500g">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="packDate">Packed Date:</label>
+                        <input type="date" id="packDate" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="useBy">Use By:</label>
+                        <input type="date" id="useBy" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="price">Price:</label>
+                        <input type="text" id="price" placeholder="e.g., $12.99">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="batchCode">Batch Code:</label>
+                        <input type="text" id="batchCode" placeholder="e.g., LOT#2024-001">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="storageInstructions">Storage Instructions:</label>
+                        <input type="text" id="storageInstructions" value="Keep refrigerated at 0-4°C">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="origin">Origin/Farm:</label>
+                        <input type="text" id="origin" placeholder="e.g., Local Farm, Grass Fed">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="additionalInfo">Additional Information:</label>
+                        <textarea id="additionalInfo" rows="2" placeholder="e.g., Ingredients, allergen info, etc."></textarea>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" onclick="updateAllLabels()">Update All Labels</button>
+                    <button type="button" onclick="window.print()" class="print-btn">Print Labels</button>
+                    <button type="button" onclick="clearForm()">Clear Form</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="preview-section">
+            <h2>Label Preview</h2>
+            <p class="print-hint">Labels will automatically format for A4 printing (2 columns × 3 rows)</p>
+        </div>
+
+        <!-- Print Area - A4 Page with 6 Labels -->
+        <div class="print-area">
+            <div class="a4-page">
+                <!-- Label 1 -->
+                <div class="label">
+                    <div class="label-header">
+                        <h3 class="product-name">Premium Beef Ribeye</h3>
+                        <div class="price-tag">$12.99</div>
+                    </div>
+                    <div class="label-content">
+                        <div class="info-row">
+                            <span class="label-field">Weight:</span>
+                            <span class="label-value weight">500g</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label-field">Packed:</span>
+                            <span class="label-value pack-date">01/01/2024</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label-field">Use By:</span>
+                            <span class="label-value use-by">07/01/2024</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label-field">Batch:</span>
+                            <span class="label-value batch">LOT#2024-001</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label-field">Origin:</span>
+                            <span class="label-value origin-text">Local Farm</span>
+                        </div>
+                        <div class="storage-section">
+                            <span class="storage-icon">❄️</span>
+                            <span class="storage-text">Keep refrigerated at 0-4°C</span>
+                        </div>
+                        <div class="additional-info"></div>
+                    </div>
+                </div>
+
+                <!-- Label 2 -->
+                <div class="label">
+                    <div class="label-header">
+                        <h3 class="product-name">Premium Beef Ribeye</h3>
+                        <div class="price-tag">$12.99</div>
+                    </div>
+                    <div class="label-content">
+                        <div class="info-row">
+                            <span class="label-field">Weight:</span>
+                            <span class="label-value weight">500g</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label-field">Packed:</span>
+                            <span class="label-value pack-date">01/01/2024</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label-field">Use By:</span>
+                            <span class="label-value use-by">07/01/2024</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label-field">Batch:</span>
+                            <span class="label-value batch">LOT#2024-001</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label-field">Origin:</span>
+                            <span class="label-value origin-text">Local Farm</span>
+                        </div>
+                        <div class="storage-section">
+                            <span class="storage-icon">❄️</span>
+                            <span class="storage-text">Keep refrigerated at 0-4°C</span>
+                        </div>
+                        <div class="additional-info"></div>
+                    </div>
+                </div>
+
+                <!-- Label 3 -->
+                <div class="label">
+                    <div class="label-header">
+                        <h3 class="product-name">Premium Beef Ribeye</h3>
+                        <div class="price-tag">$12.99</div>
+                    </div>
+                    <div class="label-content">
+                        <div class="info-row">
+                            <span class="label-field">Weight:</span>
+                            <span class="label-value weight">500g</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label-field">Packed:</span>
+                            <span class="label-value pack-date">01/01/2024</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label-field">Use By:</span>
+                            <span class="label-value use-by">07/01/2024</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label-field">Batch:</span>
+                            <span class="label-value batch">LOT#2024-001</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label-field">Origin:</span>
+                            <span class="label-value origin-text">Local Farm</span>
+                        </div>
+                        <div class="storage-section">
+                            <span class="storage-icon">❄️</span>
+                            <span class="storage-text">Keep refrigerated at 0-4°C</span>
+                        </div>
+                        <div class="additional-info"></div>
+                    </div>
+                </div>
+
+                <!-- Label 4 -->
+                <div class="label">
+                    <div class="label-header">
+                        <h3 class="product-name">Premium Beef Ribeye</h3>
+                        <div class="price-tag">$12.99</div>
+                    </div>
+                    <div class="label-content">
+                        <div class="info-row">
+                            <span class="label-field">Weight:</span>
+                            <span class="label-value weight">500g</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label-field">Packed:</span>
+                            <span class="label-value pack-date">01/01/2024</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label-field">Use By:</span>
+                            <span class="label-value use-by">07/01/2024</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label-field">Batch:</span>
+                            <span class="label-value batch">LOT#2024-001</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label-field">Origin:</span>
+                            <span class="label-value origin-text">Local Farm</span>
+                        </div>
+                        <div class="storage-section">
+                            <span class="storage-icon">❄️</span>
+                            <span class="storage-text">Keep refrigerated at 0-4°C</span>
+                        </div>
+                        <div class="additional-info"></div>
+                    </div>
+                </div>
+
+                <!-- Label 5 -->
+                <div class="label">
+                    <div class="label-header">
+                        <h3 class="product-name">Premium Beef Ribeye</h3>
+                        <div class="price-tag">$12.99</div>
+                    </div>
+                    <div class="label-content">
+                        <div class="info-row">
+                            <span class="label-field">Weight:</span>
+                            <span class="label-value weight">500g</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label-field">Packed:</span>
+                            <span class="label-value pack-date">01/01/2024</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label-field">Use By:</span>
+                            <span class="label-value use-by">07/01/2024</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label-field">Batch:</span>
+                            <span class="label-value batch">LOT#2024-001</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label-field">Origin:</span>
+                            <span class="label-value origin-text">Local Farm</span>
+                        </div>
+                        <div class="storage-section">
+                            <span class="storage-icon">❄️</span>
+                            <span class="storage-text">Keep refrigerated at 0-4°C</span>
+                        </div>
+                        <div class="additional-info"></div>
+                    </div>
+                </div>
+
+                <!-- Label 6 -->
+                <div class="label">
+                    <div class="label-header">
+                        <h3 class="product-name">Premium Beef Ribeye</h3>
+                        <div class="price-tag">$12.99</div>
+                    </div>
+                    <div class="label-content">
+                        <div class="info-row">
+                            <span class="label-field">Weight:</span>
+                            <span class="label-value weight">500g</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label-field">Packed:</span>
+                            <span class="label-value pack-date">01/01/2024</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label-field">Use By:</span>
+                            <span class="label-value use-by">07/01/2024</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label-field">Batch:</span>
+                            <span class="label-value batch">LOT#2024-001</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label-field">Origin:</span>
+                            <span class="label-value origin-text">Local Farm</span>
+                        </div>
+                        <div class="storage-section">
+                            <span class="storage-icon">❄️</span>
+                            <span class="storage-text">Keep refrigerated at 0-4°C</span>
+                        </div>
+                        <div class="additional-info"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
