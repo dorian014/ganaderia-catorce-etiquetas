@@ -47,8 +47,6 @@ function updateAllLabels() {
     const refrigeracion = document.getElementById('refrigeracion').value || '';
     const congelacion = document.getElementById('congelacion').value || '';
     const barcodeValue = document.getElementById('barcode').value || '123456789';
-    const lote = document.getElementById('lote').value || 'L2024-001';
-    const temperatura = document.getElementById('temperatura').value || '0-4°C';
 
     // Format dates
     const formattedPackDate = formatDate(packDate);
@@ -85,18 +83,6 @@ function updateAllLabels() {
         const comedorElement = label.querySelector('.comedor-name');
         if (comedorElement) {
             comedorElement.textContent = comedor;
-        }
-
-        // Update lote
-        const loteElement = label.querySelector('.lote-num');
-        if (loteElement) {
-            loteElement.textContent = lote;
-        }
-
-        // Update temperatura
-        const temperaturaElement = label.querySelector('.temperatura');
-        if (temperaturaElement) {
-            temperaturaElement.textContent = temperatura;
         }
 
         // Generate barcode

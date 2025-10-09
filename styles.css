@@ -463,6 +463,11 @@ button[onclick="clearForm()"]:hover {
     flex: 1;
 }
 
+.label-body-single {
+    margin: 0.2cm 0;
+    flex: 1;
+}
+
 .info-group {
     display: flex;
     align-items: flex-start;
