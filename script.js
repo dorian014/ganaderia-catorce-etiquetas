@@ -11,25 +11,41 @@ function formatDate(dateString) {
     return `${day}/${month}/${year}`;
 }
 
+// Function to calculate expiration dates based on packing date
+function calculateExpirationDates(packDateStr) {
+    if (!packDateStr) return;
+
+    const packDate = new Date(packDateStr);
+
+    // Refrigeration: +15 days from packing
+    const refDate = new Date(packDate);
+    refDate.setDate(refDate.getDate() + 15);
+    const refDateStr = formatDate(refDate.toISOString().split('T')[0]);
+    document.getElementById('refrigeracion').value = `Caducidad refrigeración: ${refDateStr}`;
+
+    // Freezing: +3 months from packing
+    const congDate = new Date(packDate);
+    congDate.setMonth(congDate.getMonth() + 3);
+    const congDateStr = formatDate(congDate.toISOString().split('T')[0]);
+    document.getElementById('congelacion').value = `Caducidad congelación: ${congDateStr}`;
+}
+
 // Set today's date as default for packed date
 document.addEventListener('DOMContentLoaded', function() {
     const today = new Date().toISOString().split('T')[0];
     document.getElementById('packDate').value = today;
 
-    // Set default refrigeration date (14 days)
-    const refDate = new Date();
-    refDate.setDate(refDate.getDate() + 14);
-    const refDateStr = formatDate(refDate.toISOString().split('T')[0]);
-    document.getElementById('refrigeracion').value = `Caducidad refrigeración: ${refDateStr}`;
-
-    // Set default freezing date (60 days)
-    const congDate = new Date();
-    congDate.setDate(congDate.getDate() + 60);
-    const congDateStr = formatDate(congDate.toISOString().split('T')[0]);
-    document.getElementById('congelacion').value = `Caducidad congelación: ${congDateStr}`;
+    // Calculate expiration dates based on today
+    calculateExpirationDates(today);
 
     // Update labels with default values
     updateAllLabels();
+
+    // Add event listener to packDate to recalculate expiration dates
+    document.getElementById('packDate').addEventListener('change', function() {
+        calculateExpirationDates(this.value);
+        updateAllLabels();
+    });
 });
 
 // Function to update all labels with the form data
@@ -118,17 +134,8 @@ function clearForm() {
     const today = new Date().toISOString().split('T')[0];
     document.getElementById('packDate').value = today;
 
-    // Reset refrigeration date (14 days)
-    const refDate = new Date();
-    refDate.setDate(refDate.getDate() + 14);
-    const refDateStr = formatDate(refDate.toISOString().split('T')[0]);
-    document.getElementById('refrigeracion').value = `Caducidad refrigeración: ${refDateStr}`;
-
-    // Reset freezing date (60 days)
-    const congDate = new Date();
-    congDate.setDate(congDate.getDate() + 60);
-    const congDateStr = formatDate(congDate.toISOString().split('T')[0]);
-    document.getElementById('congelacion').value = `Caducidad congelación: ${congDateStr}`;
+    // Recalculate expiration dates based on today
+    calculateExpirationDates(today);
 
     // Update labels with cleared values
     updateAllLabels();
