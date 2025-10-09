@@ -468,6 +468,49 @@ button[onclick="clearForm()"]:hover {
     flex: 1;
 }
 
+.label-body-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.3cm;
+    margin: 0.3cm 0;
+    padding: 0.2cm 0;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 0.15cm;
+    flex: 1;
+    justify-content: center;
+}
+
+.info-item > div {
+    text-align: center;
+}
+
+.info-item .info-label {
+    display: block;
+    font-size: 0.45rem;
+    color: #666;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    margin-bottom: 2px;
+}
+
+.info-item .info-value {
+    display: block;
+    font-size: 0.75rem;
+    color: #000;
+    font-weight: bold;
+}
+
+.info-item .info-icon {
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
 .info-group {
     display: flex;
     align-items: flex-start;
