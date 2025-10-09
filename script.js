@@ -2,13 +2,11 @@
 function formatDate(dateString) {
     if (!dateString) return '';
 
-    const date = new Date(dateString);
-    const day = date.getDate().toString().padStart(2, '0');
-    const month = (date.getMonth() + 1).toString().padStart(2, '0');
-    const year = date.getFullYear();
+    // Parse the date properly to avoid timezone issues
+    const [year, month, day] = dateString.split('-').map(num => parseInt(num));
 
     // Return in DD/MM/YYYY format
-    return `${day}/${month}/${year}`;
+    return `${day.toString().padStart(2, '0')}/${month.toString().padStart(2, '0')}/${year}`;
 }
 
 // Function to calculate expiration dates based on packing date
@@ -26,7 +24,7 @@ function calculateExpirationDates(packDateStr) {
     const refMonth = (refDate.getMonth() + 1).toString().padStart(2, '0');
     const refYear = refDate.getFullYear();
     const refDateStr = `${refDay}/${refMonth}/${refYear}`;
-    document.getElementById('refrigeracion').value = `Caducidad refrigeración: ${refDateStr}`;
+    document.getElementById('refrigeracion').value = refDateStr;
 
     // Freezing: +3 months from packing
     const congDate = new Date(packDate);
@@ -35,7 +33,7 @@ function calculateExpirationDates(packDateStr) {
     const congMonth = (congDate.getMonth() + 1).toString().padStart(2, '0');
     const congYear = congDate.getFullYear();
     const congDateStr = `${congDay}/${congMonth}/${congYear}`;
-    document.getElementById('congelacion').value = `Caducidad congelación: ${congDateStr}`;
+    document.getElementById('congelacion').value = congDateStr;
 }
 
 // Set today's date as default for packed date
@@ -75,16 +73,21 @@ window.updateAllLabels = function() {
     // Format dates
     const formattedPackDate = formatDate(packDate);
 
-    // Extract dates from refrigeracion and congelacion fields
-    const refDateMatch = refrigeracion.match(/(\d{2}\/\d{2}\/\d{4})/);
-    const refDate = refDateMatch ? refDateMatch[1] : formatDate(new Date().toISOString().split('T')[0]);
+    // Get dates directly from refrigeracion and congelacion fields (they now only contain dates)
+    const refDate = refrigeracion || formatDate(new Date().toISOString().split('T')[0]);
+    const congDate = congelacion || formatDate(new Date().toISOString().split('T')[0]);
 
-    const congDateMatch = congelacion.match(/(\d{2}\/\d{2}\/\d{4})/);
-    const congDate = congDateMatch ? congDateMatch[1] : formatDate(new Date().toISOString().split('T')[0]);
-
-    // Update all labels
+    // Update only selected labels
     const labels = document.querySelectorAll('.label');
     labels.forEach((label, index) => {
+        // Check if this label is selected
+        const labelId = label.getAttribute('data-label-id');
+        const checkbox = document.getElementById('label' + labelId);
+
+        // Skip if this label is not selected
+        if (!checkbox || !checkbox.checked) {
+            return;
+        }
         // Update product name
         const productNameElement = label.querySelector('.product-name');
         if (productNameElement) {
@@ -192,4 +195,53 @@ document.addEventListener('keydown', function(e) {
         e.preventDefault();
         window.print();
     }
+});
+
+// Function to select all labels
+window.selectAllLabels = function() {
+    for (let i = 1; i <= 6; i++) {
+        const checkbox = document.getElementById('label' + i);
+        if (checkbox) {
+            checkbox.checked = true;
+        }
+    }
+    updateSelectionCount();
+}
+
+// Function to deselect all labels
+window.deselectAllLabels = function() {
+    for (let i = 1; i <= 6; i++) {
+        const checkbox = document.getElementById('label' + i);
+        if (checkbox) {
+            checkbox.checked = false;
+        }
+    }
+    updateSelectionCount();
+}
+
+// Function to update selection count
+window.updateSelectionCount = function() {
+    let count = 0;
+    for (let i = 1; i <= 6; i++) {
+        const checkbox = document.getElementById('label' + i);
+        if (checkbox && checkbox.checked) {
+            count++;
+        }
+    }
+    const countElement = document.getElementById('selectionCount');
+    if (countElement) {
+        countElement.textContent = `${count} de 6 etiquetas seleccionadas`;
+    }
+}
+
+// Add change listeners to checkboxes
+window.addEventListener('DOMContentLoaded', function() {
+    for (let i = 1; i <= 6; i++) {
+        const checkbox = document.getElementById('label' + i);
+        if (checkbox) {
+            checkbox.addEventListener('change', updateSelectionCount);
+        }
+    }
+    // Initial count update
+    updateSelectionCount();
 });

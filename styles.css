@@ -584,13 +584,11 @@ button[onclick="clearForm()"]:hover {
 }
 
 .exp-box.refrigeracion {
-    background: #e0f2fe;
-    border: 1px solid #0284c7;
+    border: 1px solid #ddd;
 }
 
 .exp-box.congelacion {
-    background: #f0f9ff;
-    border: 1px solid #0369a1;
+    border: 1px solid #ddd;
 }
 
 .exp-icon {
@@ -600,6 +598,7 @@ button[onclick="clearForm()"]:hover {
 
 .exp-box > div {
     flex: 1;
+    text-align: center;
 }
 
 .exp-label {
@@ -609,6 +608,7 @@ button[onclick="clearForm()"]:hover {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.3px;
+    text-align: center;
 }
 
 .exp-date {
@@ -617,6 +617,7 @@ button[onclick="clearForm()"]:hover {
     font-weight: bold;
     color: #000;
     margin-top: 1px;
+    text-align: center;
 }
 
 .qrcode-section {
@@ -643,3 +644,96 @@ button[onclick="clearForm()"]:hover {
 }
 
 /* QR Code implementation - no special fonts needed */
+
+/* Label Selection Styles */
+.selection-section {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f8f8f8;
+    border-radius: 5px;
+    border: 1px solid #e0e0e0;
+}
+
+.selection-section h3 {
+    color: #333;
+    font-size: 1rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.label-checkboxes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.checkbox-label:hover {
+    background: #f0f0f0;
+    border-color: #dc2626;
+}
+
+.checkbox-label input[type="checkbox"] {
+    margin-right: 8px;
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+}
+
+.checkbox-label input[type="checkbox"]:checked {
+    accent-color: #dc2626;
+}
+
+.checkbox-label span {
+    font-size: 0.9rem;
+    color: #555;
+    user-select: none;
+}
+
+.selection-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.selection-buttons button {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    background: #666;
+    color: white;
+}
+
+.selection-buttons button:hover {
+    background: #555;
+}
+
+.selection-info {
+    text-align: center;
+    padding: 8px;
+    background: white;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+#selectionCount {
+    color: #dc2626;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .label-checkboxes {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

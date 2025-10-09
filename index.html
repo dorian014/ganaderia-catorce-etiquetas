@@ -42,17 +42,54 @@
 
                     <div class="form-group">
                         <label for="refrigeracion">REFRIGERACIÓN:</label>
-                        <input type="text" id="refrigeracion" value="Caducidad refrigeración: 23/10/2025" readonly style="background-color: #f0f0f0;">
+                        <input type="text" id="refrigeracion" value="23/10/2025" readonly style="background-color: #f0f0f0;">
                     </div>
 
                     <div class="form-group">
                         <label for="congelacion">CONGELACIÓN:</label>
-                        <input type="text" id="congelacion" value="Caducidad congelación: 09/12/2025" readonly style="background-color: #f0f0f0;">
+                        <input type="text" id="congelacion" value="09/12/2025" readonly style="background-color: #f0f0f0;">
+                    </div>
+                </div>
+
+                <!-- Label Selection Section -->
+                <div class="selection-section">
+                    <h3>Seleccionar Etiquetas</h3>
+                    <div class="label-checkboxes">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="label1" checked>
+                            <span>Etiqueta 1</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="label2" checked>
+                            <span>Etiqueta 2</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="label3" checked>
+                            <span>Etiqueta 3</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="label4" checked>
+                            <span>Etiqueta 4</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="label5" checked>
+                            <span>Etiqueta 5</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="label6" checked>
+                            <span>Etiqueta 6</span>
+                        </label>
+                    </div>
+                    <div class="selection-buttons">
+                        <button type="button" onclick="selectAllLabels()">Seleccionar Todas</button>
+                        <button type="button" onclick="deselectAllLabels()">Deseleccionar Todas</button>
+                    </div>
+                    <div class="selection-info">
+                        <span id="selectionCount">6 de 6 etiquetas seleccionadas</span>
                     </div>
                 </div>
 
                 <div class="button-group">
-                    <button type="button" onclick="updateAllLabels()">Actualizar Etiquetas</button>
                     <button type="button" onclick="window.print()" class="print-btn">Imprimir Etiquetas</button>
                     <button type="button" onclick="clearForm()">Limpiar Formulario</button>
                 </div>
@@ -63,7 +100,7 @@
         <div class="print-area">
             <div class="a4-page">
                 <!-- Label 1 -->
-                <div class="label">
+                <div class="label" data-label-id="1">
                     <!-- Header with logo only -->
                     <div class="label-header-logo">
                         <img src="assets/logo.png" alt="CATORCE" class="logo-header">
@@ -128,7 +165,7 @@
                 </div>
 
                 <!-- Label 2 -->
-                <div class="label">
+                <div class="label" data-label-id="2">
                     <!-- Header with logo only -->
                     <div class="label-header-logo">
                         <img src="assets/logo.png" alt="CATORCE" class="logo-header">
@@ -193,7 +230,7 @@
                 </div>
 
                 <!-- Label 3 -->
-                <div class="label">
+                <div class="label" data-label-id="3">
                     <!-- Header with logo only -->
                     <div class="label-header-logo">
                         <img src="assets/logo.png" alt="CATORCE" class="logo-header">
@@ -258,7 +295,7 @@
                 </div>
 
                 <!-- Label 4 -->
-                <div class="label">
+                <div class="label" data-label-id="4">
                     <!-- Header with logo only -->
                     <div class="label-header-logo">
                         <img src="assets/logo.png" alt="CATORCE" class="logo-header">
@@ -323,7 +360,7 @@
                 </div>
 
                 <!-- Label 5 -->
-                <div class="label">
+                <div class="label" data-label-id="5">
                     <!-- Header with logo only -->
                     <div class="label-header-logo">
                         <img src="assets/logo.png" alt="CATORCE" class="logo-header">
@@ -388,7 +425,7 @@
                 </div>
 
                 <!-- Label 6 -->
-                <div class="label">
+                <div class="label" data-label-id="6">
                     <!-- Header with logo only -->
                     <div class="label-header-logo">
                         <img src="assets/logo.png" alt="CATORCE" class="logo-header">
