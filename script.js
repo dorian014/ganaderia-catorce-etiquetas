@@ -15,18 +15,26 @@ function formatDate(dateString) {
 function calculateExpirationDates(packDateStr) {
     if (!packDateStr) return;
 
-    const packDate = new Date(packDateStr);
+    // Parse the date properly to avoid timezone issues
+    const [year, month, day] = packDateStr.split('-').map(num => parseInt(num));
+    const packDate = new Date(year, month - 1, day);
 
     // Refrigeration: +15 days from packing
     const refDate = new Date(packDate);
     refDate.setDate(refDate.getDate() + 15);
-    const refDateStr = formatDate(refDate.toISOString().split('T')[0]);
+    const refDay = refDate.getDate().toString().padStart(2, '0');
+    const refMonth = (refDate.getMonth() + 1).toString().padStart(2, '0');
+    const refYear = refDate.getFullYear();
+    const refDateStr = `${refDay}/${refMonth}/${refYear}`;
     document.getElementById('refrigeracion').value = `Caducidad refrigeración: ${refDateStr}`;
 
     // Freezing: +3 months from packing
     const congDate = new Date(packDate);
     congDate.setMonth(congDate.getMonth() + 3);
-    const congDateStr = formatDate(congDate.toISOString().split('T')[0]);
+    const congDay = congDate.getDate().toString().padStart(2, '0');
+    const congMonth = (congDate.getMonth() + 1).toString().padStart(2, '0');
+    const congYear = congDate.getFullYear();
+    const congDateStr = `${congDay}/${congMonth}/${congYear}`;
     document.getElementById('congelacion').value = `Caducidad congelación: ${congDateStr}`;
 }
 
