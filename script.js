@@ -183,10 +183,36 @@ window.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// Function to update label opacity based on checkbox state
+function updateLabelOpacity() {
+    for (let i = 1; i <= 6; i++) {
+        const checkbox = document.getElementById('label' + i);
+        const label = document.querySelector(`.label[data-label-id="${i}"]`);
+
+        if (label && checkbox) {
+            if (checkbox.checked) {
+                label.style.opacity = '1';
+            } else {
+                label.style.opacity = '0.3';
+            }
+        }
+    }
+}
+
 // Print functionality with better formatting
 window.addEventListener('beforeprint', function() {
     // Ensure all labels are updated before printing
     updateAllLabels();
+    // Reset all labels to full opacity for printing
+    const labels = document.querySelectorAll('.label');
+    labels.forEach(label => {
+        label.style.opacity = '1';
+    });
+});
+
+// After printing, restore opacity based on checkbox state
+window.addEventListener('afterprint', function() {
+    updateLabelOpacity();
 });
 
 // Add keyboard shortcut for printing (Ctrl+P or Cmd+P)
@@ -206,6 +232,7 @@ window.selectAllLabels = function() {
         }
     }
     updateSelectionCount();
+    updateLabelOpacity();
 }
 
 // Function to deselect all labels
@@ -217,6 +244,7 @@ window.deselectAllLabels = function() {
         }
     }
     updateSelectionCount();
+    updateLabelOpacity();
 }
 
 // Function to update selection count
@@ -239,9 +267,14 @@ window.addEventListener('DOMContentLoaded', function() {
     for (let i = 1; i <= 6; i++) {
         const checkbox = document.getElementById('label' + i);
         if (checkbox) {
-            checkbox.addEventListener('change', updateSelectionCount);
+            checkbox.addEventListener('change', function() {
+                updateSelectionCount();
+                updateLabelOpacity();
+            });
         }
     }
     // Initial count update
     updateSelectionCount();
+    // Initial opacity update
+    updateLabelOpacity();
 });

@@ -197,6 +197,7 @@ button[onclick="clearForm()"]:hover {
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     overflow: hidden;
+    transition: opacity 0.3s ease;
 }
 
 /* Label Top Section */
@@ -378,6 +379,7 @@ button[onclick="clearForm()"]:hover {
         page-break-inside: avoid;
         border-radius: 5px;
         box-shadow: none;
+        opacity: 1 !important;
     }
 
     @page {
@@ -767,5 +769,10 @@ button[onclick="clearForm()"]:hover {
         /* Reset all mobile transforms for printing */
         transform: none !important;
         margin-bottom: 0 !important;
+    }
+
+    /* Ensure all labels are at full opacity when printing from mobile */
+    .label {
+        opacity: 1 !important;
     }
 }
