@@ -378,11 +378,11 @@ button[onclick="clearForm()"]:hover {
         page-break-inside: avoid;
         border-radius: 5px;
         box-shadow: none;
-        /* Ensure labels are visible even if checkbox is unchecked */
+        /* Ensure all labels are always visible when printing */
         display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
     }
-
-    /* Labels will be hidden/shown via JavaScript based on checkbox state */
 
     @page {
         size: A4 landscape;
@@ -469,6 +469,13 @@ button[onclick="clearForm()"]:hover {
     /* Hide the preview indicator when printing */
     .a4-page::before {
         display: none !important;
+    }
+
+    /* Ensure all labels are visible when printing from mobile */
+    .label {
+        visibility: visible !important;
+        opacity: 1 !important;
+        filter: none !important;
     }
 }
 

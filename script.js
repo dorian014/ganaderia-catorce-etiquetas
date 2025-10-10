@@ -183,40 +183,10 @@ window.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Function to handle label visibility based on checkbox state
-function updateLabelVisibility() {
-    for (let i = 1; i <= 6; i++) {
-        const checkbox = document.getElementById('label' + i);
-        const label = document.querySelector(`.label[data-label-id="${i}"]`);
-
-        if (label && checkbox) {
-            if (checkbox.checked) {
-                label.style.visibility = 'visible';
-                label.style.opacity = '1';
-            } else {
-                label.style.visibility = 'hidden';
-                label.style.opacity = '0';
-            }
-        }
-    }
-}
-
 // Print functionality with better formatting
 window.addEventListener('beforeprint', function() {
     // Ensure all labels are updated before printing
     updateAllLabels();
-    // Update visibility for print
-    updateLabelVisibility();
-});
-
-// After print, restore visibility for screen view
-window.addEventListener('afterprint', function() {
-    // Reset all labels to visible for screen preview
-    const labels = document.querySelectorAll('.label');
-    labels.forEach(label => {
-        label.style.visibility = 'visible';
-        label.style.opacity = '1';
-    });
 });
 
 // Add keyboard shortcut for printing (Ctrl+P or Cmd+P)
@@ -236,7 +206,7 @@ window.selectAllLabels = function() {
         }
     }
     updateSelectionCount();
-    updateLabelPreview();
+    updateAllLabels();  // Update all labels with form data
 }
 
 // Function to deselect all labels
@@ -248,7 +218,7 @@ window.deselectAllLabels = function() {
         }
     }
     updateSelectionCount();
-    updateLabelPreview();
+    updateAllLabels();  // Clear updates from unchecked labels
 }
 
 // Function to update selection count
@@ -262,27 +232,10 @@ window.updateSelectionCount = function() {
     }
     const countElement = document.getElementById('selectionCount');
     if (countElement) {
-        countElement.textContent = `${count} de 6 etiquetas seleccionadas`;
+        countElement.textContent = `${count} de 6 etiquetas se actualizarán`;
     }
 }
 
-// Function to update label preview based on checkbox state
-function updateLabelPreview() {
-    for (let i = 1; i <= 6; i++) {
-        const checkbox = document.getElementById('label' + i);
-        const label = document.querySelector(`.label[data-label-id="${i}"]`);
-
-        if (label && checkbox) {
-            if (checkbox.checked) {
-                label.style.opacity = '1';
-                label.style.filter = 'none';
-            } else {
-                label.style.opacity = '0.3';
-                label.style.filter = 'grayscale(1)';
-            }
-        }
-    }
-}
 
 // Add change listeners to checkboxes
 window.addEventListener('DOMContentLoaded', function() {
@@ -291,11 +244,10 @@ window.addEventListener('DOMContentLoaded', function() {
         if (checkbox) {
             checkbox.addEventListener('change', function() {
                 updateSelectionCount();
-                updateLabelPreview();
+                updateAllLabels();  // Update labels when checkbox changes
             });
         }
     }
     // Initial count update
     updateSelectionCount();
-    updateLabelPreview();
 });
