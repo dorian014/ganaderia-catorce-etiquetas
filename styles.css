@@ -351,13 +351,23 @@ button[onclick="clearForm()"]:hover {
 
     /* A4 Page for printing - Landscape */
     .a4-page {
-        width: 29.7cm;
-        height: 21cm;
-        margin: 0;
-        padding: 1cm 0.75cm;
+        width: 29.7cm !important;
+        height: 21cm !important;
+        margin: 0 !important;
+        padding: 1cm 0.75cm !important;
         box-shadow: none;
         page-break-after: avoid;
         page-break-inside: avoid;
+        /* Reset any transforms applied for mobile view */
+        transform: none !important;
+        transform-origin: unset !important;
+        margin-bottom: 0 !important;
+        /* Ensure proper grid layout for labels */
+        display: grid !important;
+        grid-template-columns: repeat(3, 9.4cm) !important;
+        grid-template-rows: repeat(2, 9.5cm) !important;
+        gap: 0.5cm 0.4cm !important;
+        justify-content: center !important;
     }
 
     /* Label adjustments for print */
@@ -743,5 +753,19 @@ button[onclick="clearForm()"]:hover {
 @media (max-width: 768px) {
     .label-checkboxes {
         grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Override mobile styles specifically for print to ensure proper A4 format */
+@media print and (max-width: 768px) {
+    .print-area {
+        overflow: visible !important;
+        padding: 0 !important;
+    }
+
+    .a4-page {
+        /* Reset all mobile transforms for printing */
+        transform: none !important;
+        margin-bottom: 0 !important;
     }
 }
