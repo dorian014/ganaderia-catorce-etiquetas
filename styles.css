@@ -351,24 +351,38 @@ button[onclick="clearForm()"]:hover {
 
     /* A4 Page for printing - Landscape */
     .a4-page {
-        width: 29.7cm;
-        height: 21cm;
-        margin: 0;
-        padding: 1cm 0.75cm;
+        width: 29.7cm !important;
+        height: 21cm !important;
+        margin: 0 !important;
+        padding: 1cm 0.75cm !important;
         box-shadow: none;
         page-break-after: avoid;
         page-break-inside: avoid;
+        /* Reset any transforms applied for mobile view */
+        transform: none !important;
+        transform-origin: unset !important;
+        margin-bottom: 0 !important;
+        /* Ensure proper grid layout for labels */
+        display: grid !important;
+        grid-template-columns: repeat(3, 9.4cm) !important;
+        grid-template-rows: repeat(2, 9.5cm) !important;
+        gap: 0.5cm 0.4cm !important;
+        justify-content: center !important;
     }
 
     /* Label adjustments for print */
     .label {
-        width: 9.4cm;
-        height: 9.5cm;
+        width: 9.4cm !important;
+        height: 9.5cm !important;
         border: 2px solid #333;
         page-break-inside: avoid;
         border-radius: 5px;
         box-shadow: none;
+        /* Ensure labels are visible even if checkbox is unchecked */
+        display: flex !important;
     }
+
+    /* Labels will be hidden/shown via JavaScript based on checkbox state */
 
     @page {
         size: A4 landscape;
@@ -392,13 +406,69 @@ button[onclick="clearForm()"]:hover {
     }
 
     .print-area {
-        overflow-x: scroll;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        padding: 10px;
+    }
+
+    /* Scale down for mobile viewing only, not printing */
+    .a4-page {
+        /* Use CSS custom properties for dynamic scaling */
+        --mobile-scale: 0.35;
+        transform: scale(var(--mobile-scale));
+        transform-origin: top left;
+        /* Adjust container height after scaling */
+        margin-bottom: calc(-100% * (1 - var(--mobile-scale)));
+        /* Add visual indication that this is a preview */
+        position: relative;
+    }
+
+    /* Add a "Preview" indicator for mobile */
+    .a4-page::before {
+        content: "Vista previa - Desliza para ver todas las etiquetas";
+        position: absolute;
+        top: -30px;
+        left: 0;
+        font-size: 12px;
+        color: #666;
+        background: #fff3cd;
+        padding: 5px 10px;
+        border-radius: 4px;
+        border: 1px solid #ffc107;
+        white-space: nowrap;
+        transform: scale(calc(1 / var(--mobile-scale)));
+        transform-origin: top left;
+    }
+}
+
+/* Even smaller screens */
+@media (max-width: 480px) {
+    .a4-page {
+        --mobile-scale: 0.28;
+    }
+
+    .label-checkboxes {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Override mobile styles specifically for print to ensure proper A4 format */
+@media print and (max-width: 768px) {
+    .print-area {
+        overflow: visible !important;
+        padding: 0 !important;
     }
 
     .a4-page {
-        transform: scale(0.5);
-        transform-origin: top left;
-        margin-bottom: -50%;
+        /* Reset all mobile transforms for printing */
+        transform: none !important;
+        margin-bottom: 0 !important;
+    }
+
+    /* Hide the preview indicator when printing */
+    .a4-page::before {
+        display: none !important;
     }
 }
 
