@@ -324,12 +324,19 @@ button[onclick="clearForm()"]:hover {
         background: white;
         height: 21cm;
         overflow: hidden;
+        /* Force single page */
+        page-break-after: avoid !important;
+        page-break-before: avoid !important;
     }
 
     .container {
         max-width: none;
         margin: 0;
         padding: 0;
+        /* Force single page */
+        page-break-after: avoid !important;
+        page-break-before: avoid !important;
+        page-break-inside: avoid !important;
     }
 
     /* Hide everything except the print area */
@@ -348,6 +355,10 @@ button[onclick="clearForm()"]:hover {
         background: white;
         height: 21cm;
         overflow: hidden;
+        /* Force single page */
+        page-break-after: avoid !important;
+        page-break-before: avoid !important;
+        page-break-inside: avoid !important;
     }
 
     /* A4 Page for printing - Landscape */
@@ -357,8 +368,10 @@ button[onclick="clearForm()"]:hover {
         margin: 0 !important;
         padding: 1cm 0.75cm !important;
         box-shadow: none;
-        page-break-after: avoid;
-        page-break-inside: avoid;
+        /* Force single page */
+        page-break-after: avoid !important;
+        page-break-before: avoid !important;
+        page-break-inside: avoid !important;
         /* Reset any transforms applied for mobile view */
         transform: none !important;
         transform-origin: unset !important;
@@ -376,7 +389,10 @@ button[onclick="clearForm()"]:hover {
         width: 9.4cm;
         height: 9.5cm;
         border: 2px solid #333;
-        page-break-inside: avoid;
+        /* Force labels to stay on same page */
+        page-break-inside: avoid !important;
+        page-break-after: avoid !important;
+        page-break-before: avoid !important;
         border-radius: 5px;
         box-shadow: none;
         opacity: 1 !important;
@@ -385,6 +401,19 @@ button[onclick="clearForm()"]:hover {
     @page {
         size: A4 landscape;
         margin: 0;
+    }
+
+    /* Force maximum one page */
+    @page :first {
+        margin: 0;
+    }
+
+    @page :left {
+        display: none;
+    }
+
+    @page :right {
+        display: none;
     }
 
     .logo {
