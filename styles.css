@@ -408,10 +408,6 @@ button[onclick="clearForm()"]:hover {
         width: auto !important;
     }
 
-    .label-divider {
-        margin: 0.1cm 0 0.05cm 0 !important; /* Reduced space after logo */
-    }
-
     @page {
         size: A4 landscape;
         margin: 0;
@@ -531,13 +527,16 @@ button[onclick="clearForm()"]:hover {
 }
 
 .label-divider {
-    height: 3px;
-    background: #dc2626; /* Solid fallback color */
-    background: linear-gradient(to right, #dc2626, #991b1b);
-    margin: 0.15cm 0 0.1cm 0;
-    width: 100%;
-    display: block;
-    clear: both;
+    height: 3px !important;
+    min-height: 3px !important;
+    background: #dc2626 !important; /* Solid fallback color */
+    background: linear-gradient(to right, #dc2626, #991b1b) !important;
+    margin: 0.15cm 0 0.1cm 0 !important;
+    width: 100% !important;
+    display: block !important;
+    box-sizing: border-box !important;
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
 .label-body {
