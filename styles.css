@@ -398,6 +398,20 @@ button[onclick="clearForm()"]:hover {
         opacity: 1 !important;
     }
 
+    /* Print-specific label content adjustments */
+    .label-header-logo {
+        padding: 0.05cm 0 !important; /* Reduced padding */
+    }
+
+    .logo-header {
+        height: 1.6cm !important; /* Smaller logo in print */
+        width: auto !important;
+    }
+
+    .label-divider {
+        margin: 0.1cm 0 0.05cm 0 !important; /* Reduced space after logo */
+    }
+
     @page {
         size: A4 landscape;
         margin: 0;
