@@ -194,8 +194,7 @@ button[onclick="clearForm()"]:hover {
     flex-direction: column;
     position: relative;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
     overflow: hidden;
     transition: opacity 0.3s ease;
 }
@@ -394,19 +393,11 @@ button[onclick="clearForm()"]:hover {
         page-break-after: avoid !important;
         page-break-before: avoid !important;
         border-radius: 5px;
-        box-shadow: none;
         opacity: 1 !important;
     }
 
     /* Print-specific label content adjustments */
-    .label-header-logo {
-        padding: 0.05cm 0 !important; /* Reduced padding */
-    }
-
-    .logo-header {
-        height: 1.6cm !important; /* Smaller logo in print */
-        width: auto !important;
-    }
+    /* No longer needed - base styles now match print requirements */
 
     @page {
         size: A4 landscape;
@@ -463,11 +454,11 @@ button[onclick="clearForm()"]:hover {
 
 .label-header-logo {
     text-align: center;
-    padding: 0.15cm 0;
+    padding: 0.05cm 0;
 }
 
 .logo-header {
-    height: 2cm;
+    height: 1.6cm;
     width: auto;
 }
 
