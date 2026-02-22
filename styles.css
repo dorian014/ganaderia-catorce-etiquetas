@@ -248,7 +248,7 @@ button[onclick="clearForm()"]:hover {
     display: grid;
     grid-template-columns: repeat(3, 9.4cm);
     grid-template-rows: repeat(2, 9.5cm);
-    gap: 0.5cm 0.4cm;
+    gap: 0;
     justify-content: center;
 }
 
@@ -448,7 +448,7 @@ button[onclick="clearForm()"]:hover {
         display: grid !important;
         grid-template-columns: repeat(3, 9.4cm) !important;
         grid-template-rows: repeat(2, 9.5cm) !important;
-        gap: 0.5cm 0.4cm !important;
+        gap: 0 !important;
         justify-content: center !important;
     }
 

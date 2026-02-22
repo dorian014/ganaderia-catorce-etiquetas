@@ -281,9 +281,11 @@ window.compartirWhatsApp = async function() {
         // 2. Capture .a4-page with html2canvas
         const a4Page = document.querySelector('.a4-page');
         const canvas = await html2canvas(a4Page, {
-            scale: 2,
+            scale: 3,
             useCORS: true,
-            backgroundColor: '#ffffff'
+            backgroundColor: '#ffffff',
+            imageTimeout: 0,
+            allowTaint: true
         });
 
         // 3. Restore label opacity
