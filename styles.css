@@ -1,3 +1,55 @@
+/* Local font fallbacks */
+@font-face {
+    font-family: 'Josefin Sans';
+    src: url('assets/fonts/JosefinSans-Variable.ttf') format('truetype');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Orbitron';
+    src: url('assets/fonts/Orbitron-Variable.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* --- Logo Component --- */
+.logo__ganaderia {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 300;
+    font-style: italic;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: #2d2d2d;
+}
+
+.logo__icon {
+    display: block;
+}
+
+.logo__icon img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.logo__catorce {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #d4231a;
+}
+
+.logo__est {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    color: rgba(10, 10, 10, 0.4);
+}
+
 /* Global Styles */
 * {
     margin: 0;
@@ -27,10 +79,19 @@ header {
 }
 
 .header-logo {
-    width: 200px;
-    height: auto;
-    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    text-align: center;
+    width: 160px;
+    margin: 0 auto 20px;
 }
+
+.header-logo .logo__ganaderia { font-size: 0.6rem; margin-bottom: 0.2rem; }
+.header-logo .logo__icon { width: 100px; margin: 0.1rem 0; }
+.header-logo .logo__catorce { font-size: 1.3rem; margin-top: 0.1rem; }
+.header-logo .logo__est { font-size: 0.45rem; margin-top: 0.2rem; }
 
 header h1 {
     color: #333;
@@ -458,9 +519,17 @@ button[onclick="clearForm()"]:hover {
 }
 
 .logo-header {
-    height: 1.6cm;
-    width: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    text-align: center;
 }
+
+.logo-header .logo__ganaderia { font-size: 0.18cm; margin-bottom: 0.05cm; }
+.logo-header .logo__icon { width: 1.2cm; margin: 0.03cm 0; }
+.logo-header .logo__catorce { font-size: 0.4cm; margin-top: 0.03cm; }
+.logo-header .logo__est { font-size: 0.12cm; margin-top: 0.05cm; }
 
 .header-left {
     flex-shrink: 0;
