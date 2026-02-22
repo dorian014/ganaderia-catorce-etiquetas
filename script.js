@@ -262,6 +262,88 @@ window.updateSelectionCount = function() {
     }
 }
 
+// Function to share labels as PDF via WhatsApp (Web Share API with download fallback)
+window.compartirWhatsApp = async function() {
+    const btn = document.querySelector('.whatsapp-btn');
+    const originalText = btn.textContent;
+    btn.textContent = 'Generando PDF...';
+    btn.disabled = true;
+
+    try {
+        // 1. Set all labels to full opacity for capture
+        const labels = document.querySelectorAll('.label');
+        const savedOpacities = [];
+        labels.forEach(label => {
+            savedOpacities.push(label.style.opacity);
+            label.style.opacity = '1';
+        });
+
+        // 2. Capture .a4-page with html2canvas
+        const a4Page = document.querySelector('.a4-page');
+        const canvas = await html2canvas(a4Page, {
+            scale: 2,
+            useCORS: true,
+            backgroundColor: '#ffffff'
+        });
+
+        // 3. Restore label opacity
+        labels.forEach((label, i) => {
+            label.style.opacity = savedOpacities[i];
+        });
+
+        // 4. Create landscape A4 PDF with jsPDF
+        const jsPDF = window.jspdf?.jsPDF || window.jsPDF;
+        const pdf = new jsPDF({
+            orientation: 'landscape',
+            unit: 'mm',
+            format: 'a4'
+        });
+
+        const pageWidth = 297;
+        const pageHeight = 210;
+        const imgData = canvas.toDataURL('image/jpeg', 0.95);
+        pdf.addImage(imgData, 'JPEG', 0, 0, pageWidth, pageHeight);
+
+        // 5. Build filename with product name and date
+        const productName = (document.getElementById('productName').value || 'Producto').replace(/[/\\]/g, '-');
+        const today = new Date();
+        const dd = String(today.getDate()).padStart(2, '0');
+        const mm = String(today.getMonth() + 1).padStart(2, '0');
+        const yyyy = today.getFullYear();
+        const fileName = `Etiquetas-${productName}-${dd}-${mm}-${yyyy}.pdf`;
+
+        // 6. Convert to File and try Web Share API, else download
+        const pdfBlob = pdf.output('blob');
+        const pdfFile = new File([pdfBlob], fileName, { type: 'application/pdf' });
+
+        if (navigator.canShare && navigator.canShare({ files: [pdfFile] })) {
+            await navigator.share({
+                files: [pdfFile],
+                title: fileName,
+                text: 'Etiquetas de producto - Ganadería Catorce'
+            });
+        } else {
+            // Fallback: download the PDF
+            const url = URL.createObjectURL(pdfBlob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = fileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+    } catch (error) {
+        console.error('Error generating PDF:', error);
+        if (error.name !== 'AbortError') {
+            alert('Error al generar el PDF. Intenta de nuevo.');
+        }
+    } finally {
+        btn.textContent = originalText;
+        btn.disabled = false;
+    }
+}
+
 // Add change listeners to checkboxes
 window.addEventListener('DOMContentLoaded', function() {
     for (let i = 1; i <= 6; i++) {

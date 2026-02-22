@@ -190,6 +190,14 @@ button:hover {
     background: #38a169;
 }
 
+.whatsapp-btn {
+    background: #25D366;
+}
+
+.whatsapp-btn:hover {
+    background: #1da851;
+}
+
 button[onclick="clearForm()"] {
     background: #718096;
 }

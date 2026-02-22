@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="styles.css">
     <!-- QRCode Library -->
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    <!-- html2canvas + jsPDF for PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -98,6 +101,7 @@
 
                 <div class="button-group">
                     <button type="button" onclick="window.print()" class="print-btn">Imprimir Etiquetas</button>
+                    <button type="button" onclick="compartirWhatsApp()" class="whatsapp-btn">Compartir por WhatsApp</button>
                     <button type="button" onclick="clearForm()">Limpiar Formulario</button>
                 </div>
             </form>
